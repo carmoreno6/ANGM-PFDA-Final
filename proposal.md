@@ -1,7 +1,7 @@
 #CompositionGuideCreator: Creates Helpful Overalys in various formats to Help With Compositing
 
 ## Description
-A tool that would create several types of compositional overlays used in artistic composition guides such as Rule of Thirds, Golden Ratio, Golden Triangle) to aid visual artists, designers, and photographers in crafting aesthetically balanced compositions. Or even a starting base for most artworks.
+A tool that would create several types of compositional overlays used in artistic composition guides such as Rule of Thirds, Golden Ratio, Golden Triangle to aid visual artists, designers, and photographers in crafting aesthetically balanced compositions. Or even a starting base for most artworks.
 
 ##Features
 
