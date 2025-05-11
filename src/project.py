@@ -20,12 +20,11 @@ def draw_center_grid(draw, width, height, line_color=(255, 255, 255, 128)):
     
 def save_overlay(image, filename):
     #makes sure save occurs without issue
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    image.save(filename,"PNG")
-    
-def save_overlay(image, filename):
+    folder = os.path.dirname(filename)    
+    if folder and not os.path.exsits(folder):
+        os.makedirs(folder)
     image.save(filename, "PNG")
-    
+       
 def main():
     width, height = 1920, 1080
     overlay = create_canvas(width, height)
