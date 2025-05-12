@@ -50,7 +50,7 @@ def draw_rule_of_thirds(surface):
     two_third_x = 2 * WIDTH // 3
     third_y = HEIGHT // 3
     two_third_y = 2 * HEIGHT // 3
-    pygame.draw.line(surface, LINE_COLOR, (third_x, 0), (third_x HEIGHT), 2)
+    pygame.draw.line(surface, LINE_COLOR, (third_x, 0), (third_x, HEIGHT), 2)
     pygame.draw.line(surface, LINE_COLOR, (two_third_x, 0) (two_third_x, HEIGHT), 2)
     pygame.draw.line(surface, LINE_COLOR, (0, third_y), (WIDTH, third_y), 2)
     pygame.draw.line(surface, LINE_COLOR, (0, two_third_y), (WIDTH, two_third_y), 2)
@@ -58,7 +58,7 @@ def draw_rule_of_thirds(surface):
 def draw_center_grid(surface):
     center_x = WIDTH // 2
     third_y = HEIGHT // 2
-    pygame.draw.line(surface, LINE_COLOR, (center_x, 0), (center_x HEIGHT), 2)
+    pygame.draw.line(surface, LINE_COLOR, (center_x, 0), (center_x, HEIGHT), 2)
     pygame.draw.line(surface, LINE_COLOR, (0, center_y) (WIDTH, center_y), 2)
     
 def draw_center_grid(surface):
@@ -83,8 +83,8 @@ def toggle_center_grid():
     
 # Buttons
 button = [
-    Button((10, HEIGHT 200, BUTTON_HEIGHT), "Rule of Thirds", toggle_rule_of_thirds),
-    Button((220, HEIGHT 200, BUTTON_HEIGHT), "Center Grid", toggle_center_grid),
+    Button((10, HEIGHT, 200, BUTTON_HEIGHT), "Rule of Thirds", toggle_rule_of_thirds),
+    Button((220, HEIGHT, 200, BUTTON_HEIGHT), "Center Grid", toggle_center_grid),
     Button((430, HEIGHT, 150, BUTTON_HEIGHT), "Export", export_overlay)
 ]
 
