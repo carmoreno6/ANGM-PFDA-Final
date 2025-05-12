@@ -8,13 +8,14 @@ WIDTH, HEIGHT = 1920, 1080
 BUTTON_HEIGHT = 50
 BG_COLOR = (30, 30, 30)
 BUTTON_COLOR = (60, 60, 60)
-BUTTON_HIGHTLIGHT = (90, 90, 90)
+BUTTON_HIGHLIGHT = (90, 90, 90)
 TEXT_COLOR = (255, 255, 255)
-EXPORT_FOLODER = "overlays_ui_buttons"
-os.makedirs(EXPORT_FOLODER, exist_ok=True)
+LINE_COLOR = (255, 255, 255)
+EXPORT_FOLDER = "overlays_ui_buttons"
+os.makedirs(EXPORT_FOLDER, exist_ok=True)
 
 # Screen
-screen = pygame.display.set_mode(WIDTH, HEIGHT + BUTTON_HEIGHT)
+screen = pygame.display.set_mode((WIDTH, HEIGHT + BUTTON_HEIGHT))
 pygame.display.set_caption("Grid IT UI")
 font = pygame.font.SysFont(None, 36)
 
@@ -24,7 +25,7 @@ show_center_grid = True
 
 # Classes
 class Button:
-    def __unit__(self, rect, text, callback):
+    def __init__(self, rect, text, callback):
         self.rect = pygame.Rect(rect)
         self.text = text
         self.callback = callback
@@ -32,7 +33,7 @@ class Button:
     def draw(self, surface):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(mouse_pos):
-                color = BUTTON_HIGHTLIGHT
+                color = BUTTON_HIGHLIGHT
         else:
             color = BUTTON_COLOR
         pygame.draw.rect(surface, color, self.rect)
@@ -46,20 +47,14 @@ class Button:
             
 # drawing function
 def draw_rule_of_thirds(surface):
-    third_x = Width // 3
+    third_x = WIDTH // 3
     two_third_x = 2 * WIDTH // 3
     third_y = HEIGHT // 3
     two_third_y = 2 * HEIGHT // 3
     pygame.draw.line(surface, LINE_COLOR, (third_x, 0), (third_x, HEIGHT), 2)
-    pygame.draw.line(surface, LINE_COLOR, (two_third_x, 0) (two_third_x, HEIGHT), 2)
+    pygame.draw.line(surface, LINE_COLOR, (two_third_x, 0), (two_third_x, HEIGHT), 2)
     pygame.draw.line(surface, LINE_COLOR, (0, third_y), (WIDTH, third_y), 2)
     pygame.draw.line(surface, LINE_COLOR, (0, two_third_y), (WIDTH, two_third_y), 2)
-    
-def draw_center_grid(surface):
-    center_x = WIDTH // 2
-    third_y = HEIGHT // 2
-    pygame.draw.line(surface, LINE_COLOR, (center_x, 0), (center_x, HEIGHT), 2)
-    pygame.draw.line(surface, LINE_COLOR, (0, center_y) (WIDTH, center_y), 2)
     
 def draw_center_grid(surface):
     center_x = WIDTH // 2
@@ -68,7 +63,7 @@ def draw_center_grid(surface):
     pygame.draw.line(surface, LINE_COLOR, (0, center_y), (WIDTH, center_y), 2)
     
 def export_overlay():
-    export_path = os.path.join(EXPORT_FOLODER, "overlay_ui_button_export.png")
+    export_path = os.path.join(EXPORT_FOLDER, "overlay_ui_button_export.png")
     pygame.image.save(screen.subsurface((0, 0, WIDTH, HEIGHT)), export_path)
     print(f"Overlay exported to: {export_path}")
    
@@ -95,25 +90,25 @@ clock = pygame.time.Clock()
 while running:
     screen.fill(BG_COLOR, (0, 0, WIDTH, HEIGHT))
     
-# Draw overlays
-if show_rule_of_thirds:
-    draw_rule_of_thirds(screen)
-if show_center_grid:
-    draw_center_grid(screen)
+    # Draw overlays
+    if show_rule_of_thirds:
+        draw_rule_of_thirds(screen)
+    if show_center_grid:
+        draw_center_grid(screen)
     
-# Draw UI
-pygame.draw.rect(screen, (50, 50, 50), (0, HEIGHT, WIDTH, BUTTON_HEIGHT))
+    # Draw UI
+    pygame.draw.rect(screen, (50, 50, 50), (0, HEIGHT, WIDTH, BUTTON_HEIGHT))
 
-# Draw Buttons
-for button in button:
-    button.draw(screen)
+    # Draw Buttons
+    for btn in button:
+        btn.draw(screen)
     
-#Handling
-for event in pygame.event.get():
-    if event.type == pygame.QUIT():
-        running = False
-    for button in buttons:
-        button.handle_event(event)
+    #Handling
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        for btn in buttons:
+            btn.handle_event(event)
         
     pygame.display.flip()
     clock.tick(30)
