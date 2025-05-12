@@ -11,7 +11,7 @@ def draw_rule_of_thirds(draw, width, height, line_color=(255, 255, 255, 128)):
     draw.line([(2 * width / 3, 0), (2 * width / 3, height)], fill=line_color, width=2)
     #Horizontal line L-R
     draw.line([(0, height / 3), (width, height /3)], fill=line_color, width=2)
-    draw.line([(0, 2 * width / 3), (width, 2 * height / 3)], fill=line_color, width=2)
+    draw.line([(0, 2 * height / 3), (width, 2 * height / 3)], fill=line_color, width=2)
     
 def draw_center_grid(draw, width, height, line_color=(255, 255, 255, 128)):
     #Center Cross
