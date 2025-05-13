@@ -65,10 +65,33 @@ def draw_center_grid(surface):
     pygame.draw.line(surface, LINE_COLOR, (0, center_y), (WIDTH, center_y), 2)
     
 def export_overlay():
-    export_path = os.path.join(EXPORT_FOLDER, "overlay_ui_button_export.png")
-    pygame.image.save(screen.subsurface((0, 0, WIDTH, HEIGHT)), export_path)
-    print(f"Overlay exported to: {export_path}")
-   
+    #Hide Window
+    root = tk.Tk()
+    root.withdraw()
+    
+    #Save Location
+    file_path = filedialog.asksaveasfilename(
+        defaultextension="png",
+        filetypes=[("PNG files", "*.png"), (JPEG files", "*jpg"), ("All files", "*.*)],
+        tile = "Save Overlay As"
+    )    
+    
+    #IF Canceled
+    if not file_path:
+        print("Export canceled")
+        return
+    
+    #EXT
+    ext = os.path.splitext(file_path)[1].lower()
+    if ext == "jpg" or ext == ".jpeg":
+        format = "JPEG"
+    else:
+        format = "PNG"
+        
+    #Export
+    pygame.image.save(screen.subsurface((0, 0, WIDTH, HEIGHT)), file_path)
+    print(f"Overlay exported as {format} to: {file_path}")
+
 # Toggles 
 def toggle_rule_of_thirds():
     global show_rule_of_thirds
