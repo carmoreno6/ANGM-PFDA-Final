@@ -102,7 +102,7 @@ def toggle_center_grid():
     show_center_grid = not show_center_grid
     
 # Buttons
-button = [
+buttons = [
     Button((10, HEIGHT, 200, BUTTON_HEIGHT), "Rule of Thirds", toggle_rule_of_thirds),
     Button((220, HEIGHT, 200, BUTTON_HEIGHT), "Center Grid", toggle_center_grid),
     Button((430, HEIGHT, 150, BUTTON_HEIGHT), "Export", export_overlay)
@@ -125,14 +125,14 @@ while running:
     pygame.draw.rect(screen, (50, 50, 50), (0, HEIGHT, WIDTH, BUTTON_HEIGHT))
 
     # Draw Buttons
-    for btn in button:
+    for btn in buttons:
         btn.draw(screen)
     
     #Handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        for btn in button:
+        for btn in buttons:
             btn.handle_event(event)
         
     pygame.display.flip()
