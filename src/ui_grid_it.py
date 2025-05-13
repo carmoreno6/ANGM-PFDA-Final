@@ -13,8 +13,6 @@ BUTTON_COLOR = (60, 60, 60)
 BUTTON_HIGHLIGHT = (90, 90, 90)
 TEXT_COLOR = (255, 255, 255)
 LINE_COLOR = (255, 255, 255)
-EXPORT_FOLDER = "overlays_ui_buttons"
-os.makedirs(EXPORT_FOLDER, exist_ok=True)
 
 # Screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT + BUTTON_HEIGHT))
@@ -71,10 +69,12 @@ def export_overlay():
     
     #Save Location
     file_path = filedialog.asksaveasfilename(
-        defaultextension="png",
-        filetypes=[("PNG files", "*.png"), (JPEG files", "*jpg"), ("All files", "*.*)],
-        tile = "Save Overlay As"
+        defaultextension=".png",
+        filetypes=[("PNG files", "*.png"), ("JPEG files", "*.jpg"), ("All files", "*.*")],
+        title = "Save Overlay As"
     )    
+    
+    root.destroy()
     
     #IF Canceled
     if not file_path:
@@ -83,11 +83,11 @@ def export_overlay():
     
     #EXT
     ext = os.path.splitext(file_path)[1].lower()
-    if ext == "jpg" or ext == ".jpeg":
+    if ext == ".jpg" or ext == ".jpeg":
         format = "JPEG"
     else:
         format = "PNG"
-        
+    
     #Export
     pygame.image.save(screen.subsurface((0, 0, WIDTH, HEIGHT)), file_path)
     print(f"Overlay exported as {format} to: {file_path}")
