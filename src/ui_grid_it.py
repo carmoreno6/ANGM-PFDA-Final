@@ -1,5 +1,7 @@
 import os
 import pygame
+import tkinter as tk
+from tkinter import filedialog
 
 pygame.init()
 
@@ -107,7 +109,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        for btn in buttons:
+        for btn in button:
             btn.handle_event(event)
         
     pygame.display.flip()
